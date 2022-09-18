@@ -3,10 +3,16 @@ import torch.nn.functional as F
 import torch.distributions
 import numpy as np
 
+# class TanhBijector(torch.distributions.Transform):
+#     def __init__(self):
+#         super().__init__()
+#         self.bijective = True
 class TanhBijector(torch.distributions.Transform):
     def __init__(self):
         super().__init__()
         self.bijective = True
+        self.domain = torch.distributions.constraints.Constraint()
+        self.codomain = torch.distributions.constraints.Constraint()
 
     @property
     def sign(self):
